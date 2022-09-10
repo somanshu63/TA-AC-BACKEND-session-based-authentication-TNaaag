@@ -65,21 +65,11 @@ router.get('/dashboard/:id', (req, res, next) => {
 });
 
 router.post('/register', (req, res, next) => {
-  var { email, password } = req.body;
-  User.findOne({email}, (err, user) => {
-    if(err) return next(err);
-    console.log(user)
-    if(user){
-      req.flash('error', 'email already used')
-      return res.redirect('/users/register');
-    }
-  });
-  if(password.length < 4){
-      req.flash('error', 'password is less than 4')
-      return res.redirect('/users/register');
-  }
   User.create(req.body, (err, user) => {
-    if(err) return next(err);
+    if(err){
+        req.flash('error', err.name);
+        return res.redirect('/users/register');
+    }
     res.render('index', {title: 'user registered succesfully'})
   });
 });
