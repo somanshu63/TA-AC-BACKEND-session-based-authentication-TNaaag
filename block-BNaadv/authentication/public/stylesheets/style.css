@@ -1,0 +1,49 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+.header{
+  padding: 1rem;
+  background-color: lightgray;
+}
+.red{
+  color: red;
+}
+.text-center{
+  text-align: center;
+}
+.form-control{
+  width: 95%;
+  padding: 3px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: 2px solid grey;
+  margin: 5px 0;
+}
+.form-control:focus{
+  border-color: blue;
+}
+.register, .login{
+  margin: 3rem auto;
+  width: 400px;
+}
+.btn{
+  padding: 4px 6px;
+  background-color: rgb(80, 204, 241);
+  border: 2px solid rgb(7, 7, 170);
+  display: inline-block;
+  margin: 0 5px;
+  color: white;
+  text-decoration: none;
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+h1{
+  text-transform: capitalize;
+}
+.green{
+  color: green;
+}
