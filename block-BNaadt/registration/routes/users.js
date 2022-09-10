@@ -18,6 +18,11 @@ router.get('/login', (req, res) => {
   res.render('login', {error});
 });
 
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/users/login');
+});
+
 router.post('/login', (req, res, next) => {
   var {email ,password} = req.body;
   //empty user or password
@@ -47,14 +52,15 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/dashboard', (req, res) => {
-  res.render('dashboard');
+  var user;
+  res.render('dashboard', {user});
 });
 
 router.get('/dashboard/:id', (req, res, next) => {
   var id = req.params.id;
   User.findById(id, (err, user) => {
     if(err) return next(err);
-    res.render('userDashboard', {user})
+    res.render('dashboard', {user})
   });
 });
 

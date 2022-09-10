@@ -2,7 +2,10 @@
 <main>
     <div>
         <h1 class="text-center">Dashboard</h1>
-            
+            <% if(user){ %>
+                <h1><%= user.name %></h1>
+            <% } %>
+            <a class="btn" href="/users/logout">logout</a>
     </div>
 </main>
 <%- include('partials/footer') -%>
