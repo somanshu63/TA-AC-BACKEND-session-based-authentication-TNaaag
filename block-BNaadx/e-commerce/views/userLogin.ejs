@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Shopping</title>
+    <link rel="shortcut icon" href="/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/615eec2c8f.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="header flex">
+        <a href="" class="brand fs-20">
+            Shopping
+        </a>
+        <div class="flex align-center">
+            <a href="/">home</a>
+            <a href="/products">show products</a>
+            <a href="/users/register" class="register">register</a>
+            <a href="/users/login" class="login">login</a>
+        </div>
+    </div>
+</header>
+    <main>
+      <div class="register">
+        <h1 class="text-center red fs-40 padding-3-0">Login User</h1>
+        <form action="/users/login" method="post" class="width-300 margin-3-0">
+            <fieldset>
+                <% if(success){ %>
+                    <p class="green text-center"><%= success %></p>
+                <% }%>
+                <% if(error){ %>
+                  <p class="red text-center"><%= error %></p>
+                <% }%>
+                <input class="form-control" type="email" name="email" id="" placeholder="enter email">
+                <input class="form-control" type="password" name="password" id="" placeholder="enter password">
+                <label for="isAdmin">Login as Admin</label>
+                <input type="radio" name="isAdmin" id="isAdmin" value="true">
+                <input class="form-control" type="submit" value="login user">
+            </fieldset>
+        </form>
+      </div>
+    </main>
+<%- include('partials/footer') -%>
