@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Shopping</title>
+    <link rel="shortcut icon" href="/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/615eec2c8f.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="header flex align-center">
+        <a href="" class="brand fs-20">
+            Shopping
+        </a>
+        <div class="flex align-center">
+            <a href="/">home</a>
+            <a href="/products">show products</a>
+            <a href="/users/register" class="register">register</a>
+            <a href="/users/login" class="login">login</a>
+            <% if(user){ %>
+                <div class="flex flex-column align-center justify-center">
+                    <a href="" class="fs-20 blue"><%= user.name %></a>
+                    <% if(user.isAdmin){ %>
+                        <p>Admin</p>
+                    <% } %>
+                </div>
+                <a href="/users/logout">logout</a>
+            <%  } %>
+            <a href="/cart">
+                <img src="/images/cart.webp" alt="">
+            </a>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="products margin-3-0 padding-0-3">
+        <div class="products-list padding-0-3 ">
+            <h3 class="fs-30 blue text-center"><%= product.name %></h3>
+            <div class="flex">
+                <div class="details">
+                    <p class="fs-25 ">Rs <%= product.price %></p>
+                    <p class="fs-20 like">Available: <%= product.quantity %> pcs</p>
+                    <a href="/cart/<%= product.id %>/add" class="fs-20 cart-btn btn-small btn red">Add to Cart</a><br>
+                    <% if(error){ %>
+                        <p class="red like"><%= error %></p>
+                    <% } %>
+                    <p class="fs-25 like"><%= product.likes%></p>
+                    <a href="/products/<%= product.id %>/like" class="like btn btn-small green">like</a>
+                    <a href="/products/<%= product.id %>/dislike" class="like btn btn-small red">dislike</a>
+                    <div class="width-200 admin-controls">
+                        <% if(user.isAdmin){ %>
+                            <a class="btn block btn-big blue" href="/products/<%= product.id %>/edit">edit product</a>
+                            <a class="block btn btn-big red" href="/products/<%= product.id %>/delete">delete product</a>
+                        <% } %>
+                    </div>
+                    <div class="comments">
+                        <form action="/products/<%= product.id %>/comment" class="width-200" method="post">
+                            <fieldset>
+                                <label for="" class="fs-20">Add Comment</label>
+                                <input class="form-control" type="text" name="title" id="" placeholder="enter comment">
+                                <input class="form-control" type="submit" value="Add Comment">
+                            </fieldset>
+                        </form>
+                        <h4 class="fs-25 blue">Comments</h4>
+                        <% comments.forEach( c => { %>
+                            <p class="fs-20 like"><%= c.title %></p>
+                        <% }) %>
+                    </div>
+                </div>
+                <div class="image">
+                    <img src="<%= product.image %>" alt="product.name">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('partials/footer') -%>
